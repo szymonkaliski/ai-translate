@@ -1,0 +1,33 @@
+{
+  "name": "llm-translate",
+  "version": "1.0.0",
+  "description": "CLI tool for bi-directional LLM-driven translation",
+  "main": "dist/index.js",
+  "type": "module",
+  "bin": {
+    "llm": "./bin/cli"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx src/index.ts",
+    "format": "prettier --write .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "llm",
+    "translate",
+    "cli"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^24.7.2",
+    "prettier": "^3.6.2",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.65.0",
+    "chokidar": "^4.0.3"
+  }
+}

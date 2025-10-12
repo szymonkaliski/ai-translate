@@ -1,0 +1,9 @@
+#!/usr/bin/env node
+import("../dist/index.js")
+  .then((module) => {
+    module.main(process.argv.slice(2));
+  })
+  .catch((error) => {
+    console.error("Failed to start llm-translate:", error);
+    process.exit(1);
+  });
