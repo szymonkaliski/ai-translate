@@ -114,7 +114,9 @@ export function getApiKey(): string {
   } catch (error) {
     console.error(chalk.red(`Error reading API key from ${keyPath}`));
     console.error(
-      chalk.yellow("Please create ~/.ai-translate-key with your Anthropic API key"),
+      chalk.yellow(
+        "Please create ~/.ai-translate-key with your Anthropic API key",
+      ),
     );
     process.exit(1);
   }
@@ -132,6 +134,18 @@ interface FileState {
 }
 
 let isProcessing = false;
+
+function stripMarkdownCodeBlocks(text: string): string {
+  const trimmed = text.trim();
+  const codeBlockRegex = /^```[\w-]*\n([\s\S]*?)\n```$/;
+  const match = trimmed.match(codeBlockRegex);
+
+  if (match) {
+    return match[1];
+  }
+
+  return text;
+}
 
 async function translateFile(
   client: Anthropic,
@@ -175,7 +189,7 @@ The target file "${targetName}" is currently empty. Based on the file names and 
 
   const content = message.content[0];
   if (content.type === "text") {
-    return content.text;
+    return stripMarkdownCodeBlocks(content.text);
   }
 
   throw new Error("Unexpected response type from API");
@@ -263,7 +277,9 @@ export async function main(args: string[]) {
   };
 
   console.log(
-    chalk.bold(`Translating ${chalk.cyan(basename(file1Path))} ${chalk.dim("<->")} ${chalk.cyan(basename(file2Path))}`),
+    chalk.bold(
+      `Translating ${chalk.cyan(basename(file1Path))} ${chalk.dim("<->")} ${chalk.cyan(basename(file2Path))}`,
+    ),
   );
   console.log(chalk.dim(`Model: ${options.model}`));
   console.log(chalk.dim("Press Ctrl+C to stop\n"));
@@ -278,7 +294,8 @@ export async function main(args: string[]) {
       file2,
       modelId,
       `Created ${chalk.cyan(basename(file2Path))}`,
-      chalk.blue("→") + ` ${chalk.cyan(basename(file2Path))} is empty, auto-translating from ${chalk.cyan(basename(file1Path))}`,
+      chalk.blue("→") +
+        ` ${chalk.cyan(basename(file2Path))} is empty, auto-translating from ${chalk.cyan(basename(file1Path))}`,
     );
     console.log();
   } else if (file2HasContent && !file1HasContent) {
@@ -288,7 +305,8 @@ export async function main(args: string[]) {
       file1,
       modelId,
       `Created ${chalk.cyan(basename(file1Path))}`,
-      chalk.blue("→") + ` ${chalk.cyan(basename(file1Path))} is empty, auto-translating from ${chalk.cyan(basename(file2Path))}`,
+      chalk.blue("→") +
+        ` ${chalk.cyan(basename(file1Path))} is empty, auto-translating from ${chalk.cyan(basename(file2Path))}`,
     );
     console.log();
   }
@@ -336,6 +354,13 @@ export async function main(args: string[]) {
 
   watcher1.on("change", () => handleFileChange(file1, file2));
   watcher2.on("change", () => handleFileChange(file2, file1));
+
+  process.on("SIGINT", async () => {
+    console.log(chalk.dim("\n\nShutting down..."));
+    await watcher1.close();
+    await watcher2.close();
+    process.exit(0);
+  });
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
