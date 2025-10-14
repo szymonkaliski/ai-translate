@@ -37,4 +37,3 @@ Usage:
 ## Todo
 
 - [ ] support multiple file arguments instead of just two
-

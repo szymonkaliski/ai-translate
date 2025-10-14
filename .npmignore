@@ -1,0 +1,12 @@
+src/
+tsconfig.json
+
+# development files
+PROJECT.md
+CLAUDE.md
+.claude/
+demo/
+
+# git
+.git/
+.gitignore

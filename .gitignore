@@ -1,18 +1,6 @@
-# Dependencies
 node_modules
-
-# Build output
-dist
-
-# Logs
-*.log
-npm-debug.log*
-
-# OS
-.DS_Store
-
-# Demo
+dist/
 demo/
 
-# Claude Code
+# claude
 .claude/

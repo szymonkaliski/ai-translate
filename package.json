@@ -18,8 +18,16 @@
     "cli",
     "llm"
   ],
-  "author": "",
-  "license": "ISC",
+  "author": "Szymon Kaliski",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/szymonkaliski/ai-translate.git"
+  },
+  "bugs": {
+    "url": "https://github.com/szymonkaliski/ai-translate/issues"
+  },
+  "homepage": "https://github.com/szymonkaliski/ai-translate#readme",
   "devDependencies": {
     "@types/node": "^24.7.2",
     "prettier": "^3.6.2",
