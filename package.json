@@ -1,5 +1,5 @@
 {
-  "name": "@szymonkaliski/ai-translate",
+  "name": "@szymon_k/ai-translate",
   "version": "1.0.0",
   "description": "CLI tool for bi-directional AI-driven translation",
   "main": "dist/index.js",

@@ -6,7 +6,7 @@ Works with spoken languages, transforming programming languages, translating pse
 ## Installation
 
 ```bash
-npm install -g @szymonkaliski/ai-translate
+npm install -g @szymon_k/ai-translate
 ```
 
 ## Setup
