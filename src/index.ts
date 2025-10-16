@@ -6,7 +6,7 @@ import chokidar from "chokidar";
 import chalk from "chalk";
 import ora from "ora";
 
-const VERSION = "1.0.0";
+const VERSION = "1.1.0";
 
 const MODELS = {
   "sonnet-4.5": "claude-sonnet-4-5-20250929",
