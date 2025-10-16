@@ -10,8 +10,10 @@ const VERSION = "1.0.0";
 
 const MODELS = {
   "sonnet-4.5": "claude-sonnet-4-5-20250929",
-  haiku: "claude-3-5-haiku-20241022",
-  opus: "claude-opus-4-20250514",
+  "haiku-4.5": "claude-haiku-4-5-20251001",
+  "haiku-3.5": "claude-3-5-haiku-20241022",
+  "opus-4.1": "claude-opus-4-1-20250805",
+  "opus-4": "claude-opus-4-20250514",
 } as const;
 
 type ModelName = keyof typeof MODELS;
@@ -52,14 +54,14 @@ ${chalk.bold("ARGUMENTS:")}
 
 ${chalk.bold("OPTIONS:")}
   --model <name>     Choose Claude model (default: sonnet-4.5)
-                     Options: sonnet-4.5, haiku, opus
+                     Options: sonnet-4.5, haiku-4.5, haiku-3.5, opus-4.1, opus-4
   --help, -h         Show this help message
   --version, -v      Show version number
 
 ${chalk.bold("EXAMPLES:")}
-  translate polish.md english.md              Translate between Polish and English
-  translate --model haiku code.js code.ts     Use Haiku model for conversion
-  translate imperative.ts declarative.ts      Convert coding styles
+  translate polish.md english.md                  Translate between Polish and English
+  translate --model haiku-4.5 code.js code.ts     Use Haiku 4.5 model for conversion
+  translate imperative.ts declarative.ts          Convert coding styles
 
 ${chalk.bold("SETUP:")}
   Create ~/.ai-translate-key with your Anthropic API key
@@ -93,7 +95,7 @@ function parseArgs(args: string[]): {
       if (!MODELS[modelName]) {
         console.error(
           chalk.red(
-            `Error: Invalid model "${modelName}". Choose from: sonnet-4.5, haiku, opus`,
+            `Error: Invalid model "${modelName}". Choose from: sonnet-4.5, haiku-4.5, haiku-3.5, opus-4.1, opus-4`,
           ),
         );
         process.exit(1);

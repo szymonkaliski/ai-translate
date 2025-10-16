@@ -34,6 +34,14 @@ Usage:
 
 - [x] with two files, if one of them has content, and the other does not, auto-translate as if the first one was just written to @done(2025-10-12)
 
+## Feature 4: Support Claude Haiku 4.5
+
+- [x] add Claude Haiku 4.5 model support (`claude-haiku-4-5-20251001`) @done(2025-10-16)
+- [x] add Claude Opus 4.1 model support (`claude-opus-4-1-20250805`) @done(2025-10-16)
+- [x] update model naming to be consistent (haiku-3.5, haiku-4.5, opus-4, opus-4.1) @done(2025-10-16)
+- [x] update help text and error messages with new model options @done(2025-10-16)
+- [x] keep sonnet-4.5 as default for best quality @done(2025-10-16)
+
 ## Todo
 
 - [ ] support multiple file arguments instead of just two
